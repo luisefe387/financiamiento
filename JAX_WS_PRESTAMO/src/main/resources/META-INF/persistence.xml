@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="prestamoPU" transaction-type="JTA">         <!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+		<jta-data-source>jdbc/prestamo</jta-data-source>
+		<class>co.com.financiamiento.prestamo.entities.Socio</class>         <!-- <class>beans.dominio.Persona</class> -->
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />
+		</properties>
+	</persistence-unit>
+</persistence> 
