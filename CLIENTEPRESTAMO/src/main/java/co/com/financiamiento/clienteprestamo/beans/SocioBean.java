@@ -10,15 +10,15 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import co.com.financiamiento.clienteprestamo.clases.RespuestaPrestamo;
-import co.com.financiamiento.prestamocliente.cliente.Socio;
-import co.com.financiamiento.prestamocliente.cliente.SocioWs;
-import co.com.financiamiento.prestamocliente.cliente.SocioWsImplService;
+import co.com.financiamiento.clienteprestamo.cliente.Socio;
+import co.com.financiamiento.clienteprestamo.cliente.SocioWs;
+import co.com.financiamiento.clienteprestamo.cliente.SocioWsImplService;
 
 @Named
 @ViewScoped
 public class SocioBean implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2152389656664659476L;
 	private BigDecimal montoPrestamo;
 	SocioWs socioWs = new SocioWsImplService().getSocioWsImplPort();
 	Object [] respuesta;
@@ -56,10 +56,10 @@ public class SocioBean implements Serializable{
 	}
 
 	public void realizarCotizacionACliente(){
-		respuesta = socioWs.realizarCotizacion(montoPrestamo).toArray();
+		respuesta = socioWs.realizarCotizacion(montoPrestamo,new Socio()).toArray();
 		Socio socioElegido = (Socio)respuesta[0];
 		if(socioElegido!=null){
-			listaRespuestaPrestamo.add(new RespuestaPrestamo(socioElegido.getNombre(), ((BigDecimal)respuesta[2]), ((BigDecimal)respuesta[1]), socioElegido.getTasa()));
+			listaRespuestaPrestamo.add(new RespuestaPrestamo(socioElegido.getNombre(), ((BigDecimal)respuesta[2]), ((BigDecimal)respuesta[1]), socioElegido.getTasa().setScale(2, BigDecimal.ROUND_FLOOR)));
 		}
 	}
 	

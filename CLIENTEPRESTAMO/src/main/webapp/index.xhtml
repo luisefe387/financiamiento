@@ -13,9 +13,7 @@
 	 <h:form>
 	 	<h:panelGrid styleClass="formatoPanelesIndex" columns="3">
 	 		<h:outputText value="Monto a cotizar" styleClass="formatoTexto"></h:outputText>
-	 		<p:inputText size="20" value="#{SocioBean.montoPrestamo}" styleClass="formatoTexto">
-	 			
-	 		</p:inputText>
+	 		<p:inputText size="20" value="#{SocioBean.montoPrestamo}" styleClass="formatoTexto"/>
 	 		<p:commandButton value="Cotizar" actionListener="#{SocioBean.realizarCotizacionACliente}" styleClass="formatoTexto" update="@form"></p:commandButton>
 		</h:panelGrid>
 		<p:separator></p:separator>
