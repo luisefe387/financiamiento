@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>INDEX</title>
+</h:head>
+
+<h:body>
+	 <h:form>
+	 	<h:panelGrid styleClass="formatoPanelesIndex" columns="3">
+	 		<h:outputText value="Monto a cotizar" styleClass="formatoTexto"></h:outputText>
+	 		<p:inputText size="20" value="#{SocioBean.montoPrestamo}" styleClass="formatoTexto">
+	 			
+	 		</p:inputText>
+	 		<p:commandButton value="Cotizar" actionListener="#{SocioBean.realizarCotizacionACliente}" styleClass="formatoTexto" update="@form"></p:commandButton>
+		</h:panelGrid>
+		<p:separator></p:separator>
+		<h:panelGrid styleClass="formatoPanelesIndex" columns="2">
+	 		<h:outputText value="Monto a prestar" styleClass="formatoTexto"></h:outputText>
+			<h:outputText value="#{SocioBean.montoPrestamo}" styleClass="formatoTexto"></h:outputText>
+			<p:dataTable id="dtPrestamo" value="#{SocioBean.listaRespuestaPrestamo}"  var="c"
+                             scrollable="true"  scrollHeight="250px" emptyMessage="No hay socio disponible"
+                           
+		                     >
+		         <f:facet name="header">
+		            APROBACIÓN
+		        </f:facet>
+		        <p:column headerText="Socio que realiza el préstamo" width="110">
+                    <h:outputText value="#{c.nombreSocio}" />
+                </p:column>
+                   <p:column headerText="Cuota mensual" width="60" >
+                       <h:outputText value="#{c.cuotaMensual}">
+                       	<f:convertNumber currencySymbol="$" groupingUsed="true"  maxFractionDigits="2" type="currency" locale="es_CO" />
+                       </h:outputText>
+                   </p:column>
+                   <p:column headerText="Pago total del crédito" width="150">
+                       <h:outputText value="#{c.pagoTotalCredito}" >
+                       	<f:convertNumber currencySymbol="$" groupingUsed="true"  maxFractionDigits="2" type="currency" locale="es_CO" />
+                       </h:outputText>
+                   </p:column>
+                   <p:column headerText="Tasa de interés mensual" width="120"  >
+                       <h:outputText value="#{c.tasaInteres}" />
+                   </p:column>
+                    
+		  	</p:dataTable>
+		</h:panelGrid>
+	 </h:form>
+</h:body>
+</html>
